@@ -29,4 +29,5 @@ RUN DEPS="ca-certificates curl" && \
     rm "$NODE_FILENAME" SHASUMS256.txt SHASUMS256.txt.asc && \
     apt-get remove --purge -y $DEPS && \
     rm -rf /var/lib/apt/lists/* && \
-    apt-get clean
+    apt-get clean && \
+    apt-get autoclean && apt-get autoremove -y
