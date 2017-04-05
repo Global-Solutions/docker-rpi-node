@@ -6,7 +6,7 @@ ENV NODE_VERSION=6.10.1 \
     ARCH=armv7l
 
 RUN DEPS="ca-certificates curl" && \
-    apt-get update  && apt-get install -y --no-install-recommends $DEPS && \
+    apt-get update && apt-get install -y --no-install-recommends $DEPS && \
     set -ex && for key in \
       9554F04D7259F04124DE6B476D5A82AC7E37093B \
       94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
@@ -25,8 +25,8 @@ RUN DEPS="ca-certificates curl" && \
     curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" && \
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc && \
     grep " $NODE_FILENAME\$" SHASUMS256.txt | sha256sum -c - && \
-    tar -xzf "$NODE_VERSION" -C /usr/local --strip-components=1 && \
-    rm "$NODE_VERSION" SHASUMS256.txt SHASUMS256.txt.asc && \
+    tar -xzf "$NODE_FILENAME" -C /usr/local --strip-components=1 && \
+    rm "$NODE_FILENAME" SHASUMS256.txt SHASUMS256.txt.asc && \
     apt-get remove --purge -y $DEPS && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
