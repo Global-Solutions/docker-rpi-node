@@ -1,8 +1,8 @@
-FROM resin/rpi-raspbian:jessie-20170331
+FROM resin/rpi-raspbian:jessie-20170719
 
 MAINTAINER Global-solutions
 
-ENV NODE_VERSION=6.10.2 \
+ENV NODE_VERSION=6.11.1 \
     ARCH=armv7l
 
 RUN DEPS="ca-certificates curl" && \
