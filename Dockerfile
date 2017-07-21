@@ -18,6 +18,8 @@ RUN DEPS="ca-certificates curl" && \
       C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8 \
       56730D5401028683275BD23C23EFEFE93C4CFFFE \
     ; do \
+      gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
+      gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
     done && \
     NODE_FILENAME="node-v$NODE_VERSION-linux-$ARCH.tar.gz" && \
@@ -28,6 +30,6 @@ RUN DEPS="ca-certificates curl" && \
     tar -xzf "$NODE_FILENAME" -C /usr/local --strip-components=1 && \
     rm "$NODE_FILENAME" SHASUMS256.txt SHASUMS256.txt.asc && \
     apt-get remove --purge -y $DEPS && \
-    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/lib/apt/lists/* /tmp/* && \
     apt-get clean && \
     apt-get autoclean && apt-get autoremove -y
