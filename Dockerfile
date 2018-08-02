@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:jessie-20170719
+FROM resin/rpi-raspbian:jessie-20180801
 
 MAINTAINER Global-solutions
 
